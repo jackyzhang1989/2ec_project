@@ -8,10 +8,10 @@
 <title>Artist List</title>
 </head>
 <body>
-<h1>IMDb</h1>
+	<h1>IMDb</h1>
 	<h2>Artists</h2>
 	<br>
-	<a href="artists/add"> Add Artist</a> &nbsp;&nbsp; 
+	<a href="artists/add"> Add Artist</a> &nbsp;&nbsp;
 	<a href="/SpringImdb"> Home</a>
 	<table>
 
@@ -26,12 +26,13 @@
 
 		<c:forEach var="artist" items="${artistList}">
 			<tr>
-				<td>${artist.firstName} &nbsp; ${artist.lastName}</td>
+				<td>${artist.firstName}&nbsp; ${artist.lastName}</td>
 				<td>${artist.placeOfBirth}</td>
 				<td>
-				<form action="artists/update/${artist.id}" method="get">
+					<form action="artists/update/${artist.id}" method="get">
 						<button>Update</button>
-					</form></td>
+					</form>
+				</td>
 				<td><form action="artists/delete/${artist.id}" method="post">
 						<button type="submit">Delete</button>
 					</form></td>

@@ -14,39 +14,42 @@
 
 	<br>
 	<div>
-		<a href="artists">Search Artists</a> &nbsp;&nbsp; 
-		<a href="directors">Search Directors</a> &nbsp;&nbsp; 
-		<a href="movies/add"> Add Movie</a>
+		<a href="artists">Search Artists</a> &nbsp;&nbsp; <a href="directors">Search
+			Directors</a> &nbsp;&nbsp; <a href="movies/add"> Add Movie</a>
 	</div>
 	<br>
 	<br>
 	<div>
 
-		<strong>Filter: &nbsp;</strong> <br><br>
-		<form:form action="${pageContext.request.contextPath}/movies/search" modelAttribute="filter" method="post">
+		<strong>Filter: &nbsp;</strong> <br>
+		<br>
+		<form:form action="${pageContext.request.contextPath}/movies/search"
+			modelAttribute="filter" method="post">
 
 
-			<div style="display:block; margin-left:20px;">
+			<div style="display: block; margin-left: 20px;">
 				<form:radiobuttons path="id" items="${filterList }"
 					itemLabel="filter" itemValue="id" />
-					&nbsp;
-					<form:errors path = "id" cssStyle="color:red"/>
+				&nbsp;
+				<form:errors path="id" cssStyle="color:red" />
 			</div>
 			<br>
-			<strong>Search Term: &nbsp;</strong> 
-			<div style="display:inline;">
-			
-				<form:input path="text" /> &nbsp;<form:errors path = "text" cssStyle="color:red"/>
+			<strong>Search Term: &nbsp;</strong>
+			<div style="display: inline;">
+
+				<form:input path="text" />
+				&nbsp;
+				<form:errors path="text" cssStyle="color:red" />
 				<button type="submit">Search</button>
 			</div>
 
-			
+
 		</form:form>
 
 
 	</div>
 	<br>
-	<table style= "cellpadding:10px;">
+	<table style="cellpadding: 10px;">
 
 		<thead>
 			<tr>

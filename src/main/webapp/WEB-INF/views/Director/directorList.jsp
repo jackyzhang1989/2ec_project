@@ -8,28 +8,30 @@
 <title>Director List</title>
 </head>
 <body>
-<h1>IMDb</h1>
+	<h1>IMDb</h1>
 	<h2>Movie Directors</h2>
 	<br>
-	<a href="directors/add"> Add Director</a> &nbsp;&nbsp; 
+	<a href="directors/add"> Add Director</a> &nbsp;&nbsp;
 	<a href="/SpringImdb"> Home</a>
 	<table>
 
 		<thead>
 			<tr>
 				<th>Name</th>
-				
+
 			</tr>
 		</thead>
 
 		<c:forEach var="director" items="${directorList}">
 			<tr>
-				<td>${director.firstName} &nbsp; ${director.lastName}</td>
+				<td>${director.firstName}&nbsp;${director.lastName}</td>
 				<td>
-				<form action="directors/update/${director.id}" method="get">
+					<form action="directors/update/${director.id}" method="get">
 						<button>Update</button>
-					</form></td>
-				<td><form action="directors/delete/${director.id}" method="post">
+					</form>
+				</td>
+				<td><form action="directors/delete/${director.id}"
+						method="post">
 						<button type="submit">Delete</button>
 					</form></td>
 			</tr>
