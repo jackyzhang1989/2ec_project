@@ -11,7 +11,8 @@
 <h1>IMDb</h1>
 	<h2>Artists</h2>
 	<br>
-	<a href="artists/add"> Add Artist</a>
+	<a href="artists/add"> Add Artist</a> &nbsp;&nbsp; 
+	<a href="/SpringImdb"> Home</a>
 	<table>
 
 		<thead>

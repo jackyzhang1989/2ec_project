@@ -2,17 +2,25 @@ package cs.mum.edu.yongchao.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.SimpleTypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cs.mum.edu.yongchao.entity.Artist;
@@ -41,14 +49,14 @@ public class MovieController {
 		this.movieService = movieService;
 	}
 
-	// @Autowired
-	// private ConversionService conversionService;
-	//
-	// @InitBinder
-	// protected void initBinder(ServletRequestDataBinder binder) {
-	//
-	// binder.setConversionService(conversionService);
-	// }
+//	 @Autowired
+//	 private ConversionService conversionService;
+//	
+//	 @InitBinder
+//	 protected void initBinder(ServletRequestDataBinder binder) {
+//	
+//	 binder.setConversionService(conversionService);
+//	 }
 
 	@RequestMapping(value = { "/", "/movie", "/movies" }, method = RequestMethod.GET)
 	public String index(Model model) {
@@ -68,7 +76,7 @@ public class MovieController {
 		model.addAttribute("filter", new FilterCriteria());
 		model.addAttribute("filterList", getFilterList());
 
-		return "Movie/listAllMovie";
+		return "Movie/movieList";
 	}
 
 	@RequestMapping(value = "/movies/search", method = RequestMethod.POST)

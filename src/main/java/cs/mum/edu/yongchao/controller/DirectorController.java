@@ -32,7 +32,7 @@ public class DirectorController {
 		List<Director> directorList = directorService.getAll();
 		model.addAttribute("directorList", directorList);
 
-		return "Director/listAllDirector";
+		return "Director/directorList";
 	}
 
 	@RequestMapping(value = "/directors/add", method = RequestMethod.GET)

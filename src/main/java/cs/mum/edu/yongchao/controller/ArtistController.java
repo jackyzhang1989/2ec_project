@@ -33,9 +33,9 @@ public class ArtistController {
 	@Autowired
 	private ArtistService artistService;
 
-	public void setArtistService(ArtistService artistService) {
-		this.artistService = artistService;
-	}
+//	public void setArtistService(ArtistService artistService) {
+//		this.artistService = artistService;
+//	}
 
 	@RequestMapping(value = "/artists", method = RequestMethod.GET)
 	public String index(Model model) {
@@ -43,7 +43,7 @@ public class ArtistController {
 		List<Artist> artistList = artistService.getAll();
 		model.addAttribute("artistList", artistList);
 
-		return "Artist/listAllArtist";
+		return "Artist/artistList";
 	}
 
 	@RequestMapping(value = "/artists/add", method = RequestMethod.GET)

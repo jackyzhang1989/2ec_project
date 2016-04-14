@@ -10,12 +10,12 @@
 </head>
 <body>
 	<h1>IMDb</h1>
-	<h2>Availale Movies</h2>
-	<br>
+	<h2>Search Movies</h2>
+
 	<br>
 	<div>
-		<a href="artists"> Artists</a> &nbsp;&nbsp; <a href="directors">
-			Directors</a>
+		<a href="artists">Search Artists</a> &nbsp;&nbsp; 
+		<a href="directors">Search Directors</a>
 	</div>
 	<br>
 	<br>

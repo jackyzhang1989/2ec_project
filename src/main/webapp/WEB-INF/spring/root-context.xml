@@ -17,7 +17,22 @@
     http://www.springframework.org/schema/data/repository/spring-repository.xsd
     http://www.springframework.org/schema/data/jpa
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-    
+
+	<context:property-placeholder location="classpath:application.properties" />
+	
+	<context:annotation-config/>
+	
+	<context:component-scan base-package="cs.mum.edu.yongchao"></context:component-scan>
+	
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<jpa:repositories base-package="cs.mum.edu.yongchao.dao"></jpa:repositories>
+	
+	
+	
+	<bean id="propertyPlaceHolderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"></bean>
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -25,39 +40,24 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				
+				<prop key="use_sql_comments">${use_sql_comments}</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="connection.pool.size">${connection.pool.size}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="use_sql_comments">${use_sql_comments}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="cs.mum.edu.yongchao.model" />
+		<property name="packagesToScan" value="cs.mum.edu.yongchao.entity" />
 	</bean>
-	    
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory">
-		</property>
-	</bean>
-	
-
-	
-	<jpa:repositories base-package="cs.mum.edu.yongchao.dao"></jpa:repositories>
-	<mvc:annotation-driven />
-	<context:property-placeholder location="classpath:application.properties" />
-	<context:annotation-config/>
-	<context:component-scan base-package="cs.mum.edu.yongchao.service"></context:component-scan>
-	<context:component-scan base-package="cs.mum.edu.yongchao.service.helper"></context:component-scan>
-	
-	<bean id="propertyPlaceHolderConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"></bean>
-
-
-
 
 	<bean id="hibernateJpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory">
+		</property>
 	</bean>
 
 
@@ -76,6 +76,8 @@
 	
 	<mvc:annotation-driven conversion-service="conversionService"/>
 	
+	<bean id = "filter" class = "cs.mum.edu.yongchao.viewmodel.FilterCriteria"/>
+	
 	<bean id="conversionService"
       class="org.springframework.context.support.ConversionServiceFactoryBean">
 	    <property name="converters">
@@ -87,7 +89,4 @@
 	    </property>
 	</bean>
 	
-	<bean id = "filter" class = "cs.mum.edu.yongchao.viewmodel.FilterCriteria"/>
-	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
-	
