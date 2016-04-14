@@ -1,4 +1,4 @@
-package cs.mum.edu.yongchao.service.util;
+package cs.mum.edu.yongchao.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
-import cs.mum.edu.yongchao.dao.ArtistDao;
-import cs.mum.edu.yongchao.entity.Artist;
+import cs.mum.edu.yongchao.daoLayer.ArtistDao;
+import cs.mum.edu.yongchao.entity.ArtistBean;
 
-public class StringIdToArtistConvertor implements Converter<String[], List<Artist>> {
+public class StringIdToArtistConvertor implements Converter<String[], List<ArtistBean>> {
 
   private ArtistDao artistDao;
 
@@ -19,9 +19,9 @@ public class StringIdToArtistConvertor implements Converter<String[], List<Artis
   }
 
   @Override
-  public List<Artist> convert(String[] source) {
+  public List<ArtistBean> convert(String[] source) {
 
-    List<Artist> artists = new ArrayList<>();
+    List<ArtistBean> artists = new ArrayList<>();
 
     for (String idVal : source) {
       int id = Integer.parseInt(idVal);

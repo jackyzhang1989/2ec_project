@@ -10,6 +10,7 @@
 <body>
 	<h1 style="text-align: center">IMDb</h1>
 	<h2 style="text-align: center">Add Director</h2>
+	<br>
 	<div style="margin-left: 600px;">
 		<form:form modelAttribute="director"
 			action="${pageContext.request.contextPath}/directors/add"

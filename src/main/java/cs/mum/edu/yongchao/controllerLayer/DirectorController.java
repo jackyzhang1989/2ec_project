@@ -1,4 +1,4 @@
-package cs.mum.edu.yongchao.controller;
+package cs.mum.edu.yongchao.controllerLayer;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cs.mum.edu.yongchao.entity.Director;
-import cs.mum.edu.yongchao.service.DirectorService;
+import cs.mum.edu.yongchao.entity.DirectorBean;
+import cs.mum.edu.yongchao.serviceLayer.DirectorService;
 
 @Controller
 public class DirectorController {
@@ -27,7 +27,7 @@ public class DirectorController {
   @RequestMapping(value = "/directors", method = RequestMethod.GET)
   public String index(Model model) {
 
-    List<Director> directorList = directorService.getAll();
+    List<DirectorBean> directorList = directorService.getAll();
     model.addAttribute("directorList", directorList);
 
     return "Director/directorList";
@@ -36,12 +36,12 @@ public class DirectorController {
   @RequestMapping(value = "/directors/add", method = RequestMethod.GET)
   public String add(Model model) {
 
-    model.addAttribute("director", new Director());
+    model.addAttribute("director", new DirectorBean());
     return "Director/addDirector";
   }
 
   @RequestMapping(value = "/directors/add", method = RequestMethod.POST)
-  public String add(@Valid Director director, BindingResult result) {
+  public String add(@Valid DirectorBean director, BindingResult result) {
 
     System.out.println(result.hasErrors());
     if (result.hasErrors())
@@ -54,14 +54,14 @@ public class DirectorController {
   @RequestMapping(value = "/directors/update/{id}", method = RequestMethod.GET)
   public String update(@PathVariable int id, Model model) {
 
-    Director director = directorService.get(id);
+    DirectorBean director = directorService.get(id);
     model.addAttribute("director", director);
 
     return "Director/updateDirector";
   }
 
   @RequestMapping(value = "/directors/update/{id}", method = RequestMethod.POST)
-  public String update(@Valid Director director, @PathVariable int id, BindingResult result) {
+  public String update(@Valid DirectorBean director, @PathVariable int id, BindingResult result) {
 
     if (result.hasErrors())
       return "redirect:/directors/update/" + id;

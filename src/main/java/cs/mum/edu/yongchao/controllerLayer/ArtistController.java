@@ -1,4 +1,4 @@
-package cs.mum.edu.yongchao.controller;
+package cs.mum.edu.yongchao.controllerLayer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cs.mum.edu.yongchao.entity.Artist;
-import cs.mum.edu.yongchao.service.ArtistService;
+import cs.mum.edu.yongchao.entity.ArtistBean;
+import cs.mum.edu.yongchao.serviceLayer.ArtistService;
 
 @Controller
 public class ArtistController {
@@ -38,7 +38,7 @@ public class ArtistController {
   @RequestMapping(value = "/artists", method = RequestMethod.GET)
   public String index(Model model) {
 
-    List<Artist> artistList = artistService.getAll();
+    List<ArtistBean> artistList = artistService.getAll();
     model.addAttribute("artistList", artistList);
 
     return "Artist/artistList";
@@ -47,12 +47,12 @@ public class ArtistController {
   @RequestMapping(value = "/artists/add", method = RequestMethod.GET)
   public String add(Model model) {
 
-    model.addAttribute("artist", new Artist());
+    model.addAttribute("artist", new ArtistBean());
     return "Artist/addArtist";
   }
 
   @RequestMapping(value = "/artists/add", method = RequestMethod.POST)
-  public String add(@Valid Artist artist, BindingResult result) {
+  public String add(@Valid ArtistBean artist, BindingResult result) {
 
     System.out.println(result.hasErrors());
     if (result.hasErrors())
@@ -65,7 +65,7 @@ public class ArtistController {
   @RequestMapping(value = "/artists/update/{id}", method = RequestMethod.GET)
   public String update(@PathVariable int id, Model model) {
 
-    Artist artist = artistService.get(id);
+    ArtistBean artist = artistService.get(id);
     artist.setDateOfBirth(null);
     model.addAttribute("artist", artist);
 
@@ -73,7 +73,7 @@ public class ArtistController {
   }
 
   @RequestMapping(value = "/artists/update/{id}", method = RequestMethod.POST)
-  public String update(@Valid Artist artist, @PathVariable int id, BindingResult result) {
+  public String update(@Valid ArtistBean artist, @PathVariable int id, BindingResult result) {
     System.out.println(result.hasErrors());
     if (result.hasErrors())
       return "redirect:/artists/update/" + id;

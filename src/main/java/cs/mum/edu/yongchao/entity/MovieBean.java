@@ -9,33 +9,34 @@ import org.hibernate.validator.constraints.NotBlank;
 import java.util.*;
 
 @Entity
+@Table(name="Movie")
 @SecondaryTable(name = "MoviePoster")
-public class Movie {
+public class MovieBean {
 
   @Id
   @GeneratedValue
   private int id;
 
-  @NotNull(message = "Movie release year cannot be blank")
+  @NotNull(message = "MovieBean release year cannot be blank")
   private int year;
 
-  @NotBlank(message = "Movie name cannot be blank")
+  @NotBlank(message = "MovieBean name cannot be blank")
   private String name;
 
   @Lob
   @Column(table = "MoviePoster")
   private byte[] poster;
 
-  @NotBlank(message = "Movie summary cannot be blank")
+  @NotBlank(message = "MovieBean summary cannot be blank")
   private String summary;
 
   @Enumerated(EnumType.STRING)
-  private Rating rating;
+  private RatingBean rating;
 
   @ElementCollection(fetch = FetchType.EAGER)
   @OrderColumn(name = "position")
   @Enumerated(EnumType.STRING)
-  private List<Genre> genres = new ArrayList<>();
+  private List<GenreBean> genres = new ArrayList<>();
 
   @ElementCollection(fetch = FetchType.EAGER)
   @OrderColumn(name = "position")
@@ -45,12 +46,12 @@ public class Movie {
   @ManyToMany(fetch = FetchType.EAGER)
   @Cascade(value = {org.hibernate.annotations.CascadeType.DELETE})
   @JoinTable(name = "MovieDirector")
-  private List<Director> directors = new ArrayList<>();
+  private List<DirectorBean> directors = new ArrayList<>();
 
   @ManyToMany(fetch = FetchType.EAGER)
   @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
   @JoinTable(name = "MovieArtist")
-  private List<Artist> artists = new ArrayList<>();
+  private List<ArtistBean> artists = new ArrayList<>();
 
   public int getYear() {
     return year;
@@ -84,19 +85,19 @@ public class Movie {
     this.summary = summary;
   }
 
-  public Rating getRating() {
+  public RatingBean getRating() {
     return rating;
   }
 
-  public void setRating(Rating rating) {
+  public void setRating(RatingBean rating) {
     this.rating = rating;
   }
 
-  public List<Genre> getGenres() {
+  public List<GenreBean> getGenres() {
     return genres;
   }
 
-  public void setGenres(List<Genre> genres) {
+  public void setGenres(List<GenreBean> genres) {
     this.genres = genres;
   }
 
@@ -108,19 +109,19 @@ public class Movie {
     this.comments = comments;
   }
 
-  public List<Director> getDirectors() {
+  public List<DirectorBean> getDirectors() {
     return directors;
   }
 
-  public void setDirectors(List<Director> directors) {
+  public void setDirectors(List<DirectorBean> directors) {
     this.directors = directors;
   }
 
-  public List<Artist> getArtists() {
+  public List<ArtistBean> getArtists() {
     return artists;
   }
 
-  public void setArtists(List<Artist> artists) {
+  public void setArtists(List<ArtistBean> artists) {
     this.artists = artists;
   }
 

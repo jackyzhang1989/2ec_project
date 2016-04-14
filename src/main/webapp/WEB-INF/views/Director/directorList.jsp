@@ -19,7 +19,7 @@
 
 
 	<div style="margin-left: 600px;">
-		<c:if test="${not empty var1}">
+		<c:if test="${not empty directorList}">
 			<table>
 
 				<thead>

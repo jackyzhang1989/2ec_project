@@ -1,13 +1,13 @@
-package cs.mum.edu.yongchao.service.impl;
+package cs.mum.edu.yongchao.serviceLayer.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.edu.yongchao.dao.DirectorDao;
-import cs.mum.edu.yongchao.entity.Director;
-import cs.mum.edu.yongchao.service.DirectorService;
+import cs.mum.edu.yongchao.daoLayer.DirectorDao;
+import cs.mum.edu.yongchao.entity.DirectorBean;
+import cs.mum.edu.yongchao.serviceLayer.DirectorService;
 
 @Transactional
 public class DirectorServiceImpl implements DirectorService {
@@ -18,28 +18,28 @@ public class DirectorServiceImpl implements DirectorService {
     this.directorDao = repository;
   }
 
-  public List<Director> getAll() {
+  public List<DirectorBean> getAll() {
 
     return directorDao.findAll();
   }
 
-  public void create(Director director) {
+  public void create(DirectorBean director) {
 
     directorDao.save(director);
   }
 
-  public void update(int id, Director director) {
+  public void update(int id, DirectorBean director) {
     director.setId(id);
     directorDao.save(director);
   }
 
   public void delete(int id) {
 
-    Director director = directorDao.findOne(id);
+    DirectorBean director = directorDao.findOne(id);
     directorDao.delete(director);
   }
 
-  public Director get(int id) {
+  public DirectorBean get(int id) {
 
     return directorDao.findOne(id);
   }

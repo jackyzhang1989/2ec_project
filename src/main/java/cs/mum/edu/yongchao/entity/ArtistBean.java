@@ -10,8 +10,9 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+@Table(name="Artist")
 @SecondaryTable(name = "ArtistImage")
-public class Artist {
+public class ArtistBean {
 
   @Id
   @GeneratedValue
@@ -42,7 +43,7 @@ public class Artist {
   private byte[] image;
 
   @ManyToMany(mappedBy = "artists")
-  private List<Movie> movies = new ArrayList<>();
+  private List<MovieBean> movies = new ArrayList<>();
 
   public String getFirstName() {
     return firstName;
@@ -96,11 +97,11 @@ public class Artist {
     this.image = image;
   }
 
-  public List<Movie> getMovies() {
+  public List<MovieBean> getMovies() {
     return movies;
   }
 
-  public void setMovies(List<Movie> movies) {
+  public void setMovies(List<MovieBean> movies) {
     this.movies = movies;
   }
 

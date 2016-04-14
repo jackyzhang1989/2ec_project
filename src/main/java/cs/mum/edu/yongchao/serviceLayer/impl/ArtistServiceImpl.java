@@ -1,13 +1,13 @@
-package cs.mum.edu.yongchao.service.impl;
+package cs.mum.edu.yongchao.serviceLayer.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.edu.yongchao.dao.ArtistDao;
-import cs.mum.edu.yongchao.entity.Artist;
-import cs.mum.edu.yongchao.service.ArtistService;
+import cs.mum.edu.yongchao.daoLayer.ArtistDao;
+import cs.mum.edu.yongchao.entity.ArtistBean;
+import cs.mum.edu.yongchao.serviceLayer.ArtistService;
 
 @Transactional
 public class ArtistServiceImpl implements ArtistService {
@@ -20,28 +20,28 @@ public class ArtistServiceImpl implements ArtistService {
   }
 
 
-  public List<Artist> getAll() {
+  public List<ArtistBean> getAll() {
 
     return artistDao.findAll();
   }
 
-  public void create(Artist artist) {
+  public void create(ArtistBean artist) {
 
     artistDao.save(artist);
   }
 
-  public void update(int id, Artist artist) {
+  public void update(int id, ArtistBean artist) {
     artist.setId(id);
     artistDao.save(artist);
   }
 
   public void delete(int id) {
 
-    Artist artist = artistDao.findOne(id);
+    ArtistBean artist = artistDao.findOne(id);
     artistDao.delete(artist);
   }
 
-  public Artist get(int id) {
+  public ArtistBean get(int id) {
 
     return artistDao.findOne(id);
   }

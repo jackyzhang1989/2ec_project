@@ -1,4 +1,4 @@
-package cs.mum.edu.yongchao.controller;
+package cs.mum.edu.yongchao.controllerLayer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,14 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import cs.mum.edu.yongchao.entity.Artist;
-import cs.mum.edu.yongchao.entity.Director;
-import cs.mum.edu.yongchao.entity.Genre;
-import cs.mum.edu.yongchao.entity.Movie;
-import cs.mum.edu.yongchao.entity.Rating;
-import cs.mum.edu.yongchao.service.ArtistService;
-import cs.mum.edu.yongchao.service.DirectorService;
-import cs.mum.edu.yongchao.service.MovieService;
+import cs.mum.edu.yongchao.entity.ArtistBean;
+import cs.mum.edu.yongchao.entity.DirectorBean;
+import cs.mum.edu.yongchao.entity.GenreBean;
+import cs.mum.edu.yongchao.entity.MovieBean;
+import cs.mum.edu.yongchao.entity.RatingBean;
+import cs.mum.edu.yongchao.serviceLayer.ArtistService;
+import cs.mum.edu.yongchao.serviceLayer.DirectorService;
+import cs.mum.edu.yongchao.serviceLayer.MovieService;
 import cs.mum.edu.yongchao.viewmodel.FilterCriteria;
 
 @Controller
@@ -64,7 +64,7 @@ public class MovieController {
     String searchText = (String) model.asMap().get("searchText");
     String filterCriteria = (String) model.asMap().get("filterCriteria");
 
-    List<Movie> movieList = new ArrayList<>();
+    List<MovieBean> movieList = new ArrayList<>();
     if (searchText != null && filterCriteria != null) {
       System.out.println("Filtering data with: " + searchText + " & " + filterCriteria);
       movieList = getFilteredMovies(searchText, filterCriteria);
@@ -95,16 +95,16 @@ public class MovieController {
   @RequestMapping(value = "/movies/add", method = RequestMethod.GET)
   public String add(Model model) {
 
-    Movie movie = new Movie();
-    Genre[] genres = Genre.values();
+    MovieBean movie = new MovieBean();
+    GenreBean[] genres = GenreBean.values();
     movie.setGenres(Arrays.asList(genres));
 
-    Rating[] ratings = Rating.values();
+    RatingBean[] ratings = RatingBean.values();
 
-    List<Artist> artists = artistService.getAll();
+    List<ArtistBean> artists = artistService.getAll();
     movie.setArtists(artists);
 
-    List<Director> directors = directorService.getAll();
+    List<DirectorBean> directors = directorService.getAll();
     movie.setDirectors(directors);
 
     model.addAttribute("movie", movie);
@@ -113,7 +113,7 @@ public class MovieController {
   }
 
   @RequestMapping(value = "/movies/add", method = RequestMethod.POST)
-  public String add(@Valid Movie movie, BindingResult result) {
+  public String add(@Valid MovieBean movie, BindingResult result) {
 
     System.out.println(result.hasErrors());
     if (result.hasErrors())
@@ -126,13 +126,13 @@ public class MovieController {
   @RequestMapping(value = "/movies/update/{id}", method = RequestMethod.GET)
   public String update(@PathVariable int id, Model model) {
 
-    Movie movie = movieService.get(id);
+    MovieBean movie = movieService.get(id);
     model.addAttribute("movie", movie);
 
-    Rating[] ratings = Rating.values();
+    RatingBean[] ratings = RatingBean.values();
     model.addAttribute("ratings", Arrays.asList(ratings));
 
-    Genre[] genres = Genre.values();
+    GenreBean[] genres = GenreBean.values();
     model.addAttribute("genres", Arrays.asList(genres));
 
     model.addAttribute("artists", artistService.getAll());
@@ -142,7 +142,7 @@ public class MovieController {
   }
 
   @RequestMapping(value = "/movies/update/{id}", method = RequestMethod.POST)
-  public String update(@Valid Movie movie, @PathVariable int id, BindingResult result) {
+  public String update(@Valid MovieBean movie, @PathVariable int id, BindingResult result) {
 
     if (result.hasErrors())
       return "redirect:/movies/update/" + id;
@@ -173,13 +173,13 @@ public class MovieController {
 
   }
 
-  private List<Movie> getFilteredMovies(String text, String idVal) {
+  private List<MovieBean> getFilteredMovies(String text, String idVal) {
 
     switch (idVal) {
       case "2":
         return movieService.findByGenres(text);
       case "3":
-        return movieService.findByRating(Rating.valueOf(text));
+        return movieService.findByRating(RatingBean.valueOf(text));
 
       case "4":
         return movieService.findByYear(Integer.parseInt(text));

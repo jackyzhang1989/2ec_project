@@ -25,7 +25,7 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<jpa:repositories base-package="cs.mum.edu.yongchao.dao"></jpa:repositories>
+	<jpa:repositories base-package="cs.mum.edu.yongchao.daoLayer"></jpa:repositories>
 
 
 
@@ -68,9 +68,9 @@
 		<property name="password" value="${db.password}"></property>
 	</bean>
 
-	<bean id="movieService" class="cs.mum.edu.yongchao.service.impl.MovieServiceImpl"></bean>
-	<bean id="artistService" class="cs.mum.edu.yongchao.service.impl.ArtistServiceImpl"></bean>
-	<bean id="directorService" class="cs.mum.edu.yongchao.service.impl.DirectorServiceImpl"></bean>
+	<bean id="movieService" class="cs.mum.edu.yongchao.serviceLayer.impl.MovieServiceImpl"></bean>
+	<bean id="artistService" class="cs.mum.edu.yongchao.serviceLayer.impl.ArtistServiceImpl"></bean>
+	<bean id="directorService" class="cs.mum.edu.yongchao.serviceLayer.impl.DirectorServiceImpl"></bean>
 
 	<mvc:annotation-driven conversion-service="conversionService" />
 
@@ -80,8 +80,8 @@
 		class="org.springframework.context.support.ConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
-				<bean class="cs.mum.edu.yongchao.service.util.ArtistFormatter" />
-				<bean class="cs.mum.edu.yongchao.service.util.StringIdToArtistConvertor" />
+				<bean class="cs.mum.edu.yongchao.util.ArtistFormatter" />
+				<bean class="cs.mum.edu.yongchao.util.StringIdToArtistConvertor" />
 
 			</set>
 		</property>

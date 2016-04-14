@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Director {
+@Table(name="Director")
+public class DirectorBean {
 
   @Id
   @GeneratedValue
@@ -13,7 +14,7 @@ public class Director {
   private String lastName;
 
   @ManyToMany(mappedBy = "directors")
-  private List<Movie> movies = new ArrayList<>();
+  private List<MovieBean> movies = new ArrayList<>();
 
   public String getFirstName() {
     return firstName;
@@ -35,11 +36,11 @@ public class Director {
     this.lastName = lastName;
   }
 
-  public List<Movie> getMovies() {
+  public List<MovieBean> getMovies() {
     return movies;
   }
 
-  public void setMovies(List<Movie> movies) {
+  public void setMovies(List<MovieBean> movies) {
     this.movies = movies;
   }
 
