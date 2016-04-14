@@ -8,37 +8,46 @@
 <title>Artist List</title>
 </head>
 <body>
-	<h1>IMDb</h1>
-	<h2>Artists</h2>
+	<h1 style="text-align: center">IMDb</h1>
+	<div style="text-align: center">
+		<a href="artists/add"> Add Artist</a> &nbsp;&nbsp; <a
+			href="/SpringImdb"> Home</a>
+	</div>
 	<br>
-	<a href="artists/add"> Add Artist</a> &nbsp;&nbsp;
-	<a href="/SpringImdb"> Home</a>
-	<table>
+	<br>
 
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Place of Birth</th>
-				<th>Action</th>
+	<h2 style="text-align: center">Artists</h2>
 
-			</tr>
-		</thead>
 
-		<c:forEach var="artist" items="${artistList}">
-			<tr>
-				<td>${artist.firstName}&nbsp; ${artist.lastName}</td>
-				<td>${artist.placeOfBirth}</td>
-				<td>
-					<form action="artists/update/${artist.id}" method="get">
-						<button>Update</button>
-					</form>
-				</td>
-				<td><form action="artists/delete/${artist.id}" method="post">
-						<button type="submit">Delete</button>
-					</form></td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div style="margin-left: 600px;">
+		<c:if test="${not empty artistList}">
+			<table>
 
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Place of Birth</th>
+						<th>Action</th>
+
+					</tr>
+				</thead>
+
+				<c:forEach var="artist" items="${artistList}">
+					<tr>
+						<td>${artist.firstName}&nbsp;${artist.lastName}</td>
+						<td>${artist.placeOfBirth}</td>
+						<td>
+							<form action="artists/update/${artist.id}" method="get">
+								<button>Update</button>
+							</form>
+						</td>
+						<td><form action="artists/delete/${artist.id}" method="post">
+								<button type="submit">Delete</button>
+							</form></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+	</div>
 </body>
 </html>

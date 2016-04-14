@@ -9,20 +9,18 @@
 <title>Movie List</title>
 </head>
 <body>
-	<h1>IMDb</h1>
-	<h2>Search Movies</h2>
+	<h1 style="text-align: center">IMDb</h1>
 
 	<br>
-	<div>
+	<div style="text-align: center">
 		<a href="artists">Search Artists</a> &nbsp;&nbsp; <a href="directors">Search
 			Directors</a> &nbsp;&nbsp; <a href="movies/add"> Add Movie</a>
 	</div>
 	<br>
 	<br>
-	<div>
-
-		<strong>Filter: &nbsp;</strong> <br>
-		<br>
+	<br>
+	<h2 style="text-align: center">Search Movies</h2>
+	<div style="text-align: center">
 		<form:form action="${pageContext.request.contextPath}/movies/search"
 			modelAttribute="filter" method="post">
 
@@ -34,10 +32,11 @@
 				<form:errors path="id" cssStyle="color:red" />
 			</div>
 			<br>
-			<strong>Search Term: &nbsp;</strong>
-			<div style="display: inline;">
 
-				<form:input path="text" />
+			<div style="display: inline; margin-left: 20px;">
+
+				<form:input path="text" size="99"
+					placeholder="Pleass input key word" />
 				&nbsp;
 				<form:errors path="text" cssStyle="color:red" />
 				<button type="submit">Search</button>
@@ -49,32 +48,33 @@
 
 	</div>
 	<br>
-	<table style="cellpadding: 10px;">
+	<c:if test="${not empty movieList}">
+		<table style="cellpadding: 10px;">
 
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Year</th>
-				<th>Rating</th>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Year</th>
+					<th>Rating</th>
 
-			</tr>
-		</thead>
+				</tr>
+			</thead>
 
-		<c:forEach var="movie" items="${movieList}">
-			<tr>
-				<td>${movie.name}</td>
-				<td>${movie.year}</td>
-				<td>${movie.rating }</td>
-				<td><form action="movies/update/${movie.id}" method="get">
-						<button>Update</button>
-					</form></td>
-				<td><form action="movies/delete/${movie.id}" method="post">
-						<button type="submit">Delete</button>
-					</form></td>
-			</tr>
-		</c:forEach>
-	</table>
-
+			<c:forEach var="movie" items="${movieList}">
+				<tr>
+					<td>${movie.name}</td>
+					<td>${movie.year}</td>
+					<td>${movie.rating }</td>
+					<td><form action="movies/update/${movie.id}" method="get">
+							<button>Update</button>
+						</form></td>
+					<td><form action="movies/delete/${movie.id}" method="post">
+							<button type="submit">Delete</button>
+						</form></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 	<br>
 
 </body>

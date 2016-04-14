@@ -9,83 +9,84 @@
 </head>
 <body>
 
-	<h1>IMDb</h1>
-	<h2>Add Movie</h2>
+	<h1 style="text-align: center">IMDb</h1>
+	<h2 style="text-align: center">Add Movie</h2>
+	<br>
+	<div style="margin-left: 600px;" >
+		<form:form modelAttribute="movie"
+			action="${pageContext.request.contextPath}/movies/add" method="post">
 
-	<form:form modelAttribute="movie"
-		action="${pageContext.request.contextPath}/movies/add" method="post">
-
-		<table>
-			<tr>
-				<td>Name:</td>
-				<td><form:input path="name" /></td>
-				<td><form:errors path="name" cssStyle="color:red" /></td>
-			</tr>
-			<tr>
-				<td>Year:</td>
-				<td><form:input path="year" /></td>
-				<td><form:errors path="year" cssStyle="color:red" /></td>
-			</tr>
-			<tr>
-				<td>Summary Plot:</td>
-				<td><form:input path="summary" /></td>
-				<td><form:errors path="summary" cssStyle="color:red" /></td>
-			</tr>
-			<tr>
-				<td>Rating:</td>
-				<td><form:select path="rating" items="${ratings }" /></td>
-				<td><form:errors path="rating" cssStyle="color:red" /></td>
-			</tr>
-
-
-			<tr>
-				<td>Genres:</td>
-				<td><form:select path="genres" items="${movie.genres }">
-
-					</form:select></td>
-				<td><form:errors path="genres" cssStyle="color:color:red" /></td>
-			</tr>
+			<table>
+				<tr>
+					<td>Name:</td>
+					<td><form:input path="name" /></td>
+					<td><form:errors path="name" cssStyle="color:red" /></td>
+				</tr>
+				<tr>
+					<td>Year:</td>
+					<td><form:input path="year" /></td>
+					<td><form:errors path="year" cssStyle="color:red" /></td>
+				</tr>
+				<tr>
+					<td>Summary Plot:</td>
+					<td><form:input path="summary" /></td>
+					<td><form:errors path="summary" cssStyle="color:red" /></td>
+				</tr>
+				<tr>
+					<td>Rating:</td>
+					<td><form:select path="rating" items="${ratings }" /></td>
+					<td><form:errors path="rating" cssStyle="color:red" /></td>
+				</tr>
 
 
-			<tr>
-				<td>Artists:</td>
-				<td><form:select path="artists">
-						<form:options items="${movie.artists}" itemLabel="fullName"
-							itemValue="id" />
+				<tr>
+					<td>Genres:</td>
+					<td><form:select path="genres" items="${movie.genres }">
 
-					</form:select></td>
-				<td><form:errors path="artists" cssStyle="color:color:red" /></td>
-			</tr>
+						</form:select></td>
+					<td><form:errors path="genres" cssStyle="color:color:red" /></td>
+				</tr>
 
 
-			<tr>
-				<td>Director:</td>
-				<td><form:select path="directors">
-						<form:options items="${movie.directors}" itemValue="id"
-							itemLabel="fullName" />
-					</form:select></td>
-				<td><form:errors path="directors" cssStyle="color:color:red" />
-				</td>
-			</tr>
+				<tr>
+					<td>Artists:</td>
+					<td><form:select path="artists">
+							<form:options items="${movie.artists}" itemLabel="fullName"
+								itemValue="id" />
+
+						</form:select></td>
+					<td><form:errors path="artists" cssStyle="color:color:red" /></td>
+				</tr>
 
 
-			<tr>
-				<td>Comment:</td>
-				<td><form:textarea path="comments" /></td>
-				<td><form:errors path="comments" cssStyle="color:color:red" />
-				</td>
-			</tr>
+				<tr>
+					<td>Director:</td>
+					<td><form:select path="directors">
+							<form:options items="${movie.directors}" itemValue="id"
+								itemLabel="fullName" />
+						</form:select></td>
+					<td><form:errors path="directors" cssStyle="color:color:red" />
+					</td>
+				</tr>
 
-		</table>
-		<br>
-		<input type="submit" value="Add" /> &nbsp;&nbsp;
+
+				<tr>
+					<td>Comment:</td>
+					<td><form:textarea path="comments" /></td>
+					<td><form:errors path="comments" cssStyle="color:color:red" />
+					</td>
+				</tr>
+
+			</table>
+			<br>
+			<input type="submit" value="Add" /> &nbsp;&nbsp;
 	
 	</form:form>
-	<br>
-	<form action="${pageContext.request.contextPath}/movies" method="GET">
-		<button>Cancel</button>
-	</form>
-
+		<br>
+		<form action="${pageContext.request.contextPath}/movies" method="GET">
+			<button>Cancel</button>
+		</form>
+	</div>
 
 </body>
 </html>

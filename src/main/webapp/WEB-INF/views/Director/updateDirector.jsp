@@ -8,38 +8,40 @@
 <title>Update Director</title>
 </head>
 <body>
-	<h1>IMDb</h1>
-	<h2>Update Director</h2>
-	<form:form modelAttribute="director"
-		action="${pageContext.request.contextPath}/directors/update/${director.id}"
-		method="post">
-
-		<table>
-			<tr>
-				<td><form:hidden path="id" value="${director.id}" /></td>
-			</tr>
-			<tr>
-				<td>FirstName:</td>
-				<td><form:input path="firstName" value="${director.firstName }" />
-				</td>
-				<td><form:errors path="firstName" cssStyle="color:red" /></td>
-			</tr>
-			<tr>
-				<td>LastName:</td>
-				<td><form:input path="lastName" value="${director.lastName }" />
-				</td>
-				<td><form:errors path="lastName" cssStyle="color:red" /></td>
-			</tr>
-
-		</table>
-		<br>
-		<input type="submit" value="Update" />
-	</form:form>
+	<h1 style="text-align: center">IMDb</h1>
+	<h2 style="text-align: center">Update Director</h2>
 	<br>
-	<form action="${pageContext.request.contextPath}/directors"
-		method="GET">
-		<button>Cancel</button>
-	</form>
+	<div style="margin-left: 600px;">
+		<form:form modelAttribute="director"
+			action="${pageContext.request.contextPath}/directors/update/${director.id}"
+			method="post">
 
+			<table>
+				<tr>
+					<td><form:hidden path="id" value="${director.id}" /></td>
+				</tr>
+				<tr>
+					<td>FirstName:</td>
+					<td><form:input path="firstName"
+							value="${director.firstName }" /></td>
+					<td><form:errors path="firstName" cssStyle="color:red" /></td>
+				</tr>
+				<tr>
+					<td>LastName:</td>
+					<td><form:input path="lastName" value="${director.lastName }" />
+					</td>
+					<td><form:errors path="lastName" cssStyle="color:red" /></td>
+				</tr>
+
+			</table>
+			<br>
+			<input type="submit" value="Update" />
+		</form:form>
+		<br>
+		<form action="${pageContext.request.contextPath}/directors"
+			method="GET">
+			<button>Cancel</button>
+		</form>
+	</div>
 </body>
 </html>

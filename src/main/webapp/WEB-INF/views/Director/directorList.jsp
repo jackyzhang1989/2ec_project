@@ -8,35 +8,44 @@
 <title>Director List</title>
 </head>
 <body>
-	<h1>IMDb</h1>
-	<h2>Movie Directors</h2>
+	<h1 style="text-align: center">IMDb</h1>
+	<div style="text-align: center">
+		<a href="directors/add"> Add Director</a> &nbsp;&nbsp; <a
+			href="/SpringImdb"> Home</a>
+	</div>
 	<br>
-	<a href="directors/add"> Add Director</a> &nbsp;&nbsp;
-	<a href="/SpringImdb"> Home</a>
-	<table>
+	<br>
+	<h2 style="text-align: center">Movie Directors</h2>
 
-		<thead>
-			<tr>
-				<th>Name</th>
 
-			</tr>
-		</thead>
+	<div style="margin-left: 600px;">
+		<c:if test="${not empty var1}">
+			<table>
 
-		<c:forEach var="director" items="${directorList}">
-			<tr>
-				<td>${director.firstName}&nbsp;${director.lastName}</td>
-				<td>
-					<form action="directors/update/${director.id}" method="get">
-						<button>Update</button>
-					</form>
-				</td>
-				<td><form action="directors/delete/${director.id}"
-						method="post">
-						<button type="submit">Delete</button>
-					</form></td>
-			</tr>
-		</c:forEach>
-	</table>
+				<thead>
+					<tr>
+						<th>Name</th>
+
+					</tr>
+				</thead>
+
+				<c:forEach var="director" items="${directorList}">
+					<tr>
+						<td>${director.firstName}&nbsp;${director.lastName}</td>
+						<td>
+							<form action="directors/update/${director.id}" method="get">
+								<button>Update</button>
+							</form>
+						</td>
+						<td><form action="directors/delete/${director.id}"
+								method="post">
+								<button type="submit">Delete</button>
+							</form></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+	</div>
 
 </body>
 </html>
