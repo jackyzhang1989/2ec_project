@@ -16,7 +16,7 @@
 			action="${pageContext.request.contextPath}/movies/update/${movie.id}"
 			method="post">
 
-			<table>
+			<table  border="1">
 				<tr>
 					<td>Name:</td>
 					<td><form:input path="name" value="${movie.name }" /></td>

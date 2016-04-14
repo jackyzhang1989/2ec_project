@@ -49,7 +49,7 @@
 	</div>
 	<br>
 	<c:if test="${not empty movieList}">
-		<table style="cellpadding: 10px;">
+		<table style="cellpadding: 10px;"  border="1">
 
 			<thead>
 				<tr>

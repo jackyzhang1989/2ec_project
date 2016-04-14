@@ -16,7 +16,7 @@
 			action="${pageContext.request.contextPath}/artists/update/${artist.id}"
 			method="post">
 
-			<table>
+			<table  border="1">
 				<tr>
 					<td><form:hidden path="id" value="${artist.id}" /></td>
 				</tr>

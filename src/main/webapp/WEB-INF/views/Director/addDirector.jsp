@@ -16,7 +16,7 @@
 			action="${pageContext.request.contextPath}/directors/add"
 			method="post">
 
-			<table>
+			<table  border="1">
 				<tr>
 					<td>FirstName:</td>
 					<td><form:input path="firstName" /></td>

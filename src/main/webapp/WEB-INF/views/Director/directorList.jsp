@@ -20,12 +20,12 @@
 
 	<div style="margin-left: 600px;">
 		<c:if test="${not empty directorList}">
-			<table>
+			<table  border="1">
 
 				<thead>
 					<tr>
 						<th>Name</th>
-
+						<th>Action</th>
 					</tr>
 				</thead>
 

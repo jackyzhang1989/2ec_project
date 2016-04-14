@@ -16,7 +16,7 @@
 			action="${pageContext.request.contextPath}/directors/update/${director.id}"
 			method="post">
 
-			<table>
+			<table  border="1">
 				<tr>
 					<td><form:hidden path="id" value="${director.id}" /></td>
 				</tr>

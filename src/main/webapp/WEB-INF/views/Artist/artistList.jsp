@@ -21,7 +21,7 @@
 
 	<div style="margin-left: 600px;">
 		<c:if test="${not empty artistList}">
-			<table>
+			<table  border="1">
 
 				<thead>
 					<tr>

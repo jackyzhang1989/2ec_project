@@ -16,7 +16,7 @@
 		<form:form modelAttribute="movie"
 			action="${pageContext.request.contextPath}/movies/add" method="post">
 
-			<table>
+			<table  border="1">
 				<tr>
 					<td>Name:</td>
 					<td><form:input path="name" /></td>

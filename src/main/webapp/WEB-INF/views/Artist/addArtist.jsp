@@ -15,7 +15,7 @@
 		<form:form modelAttribute="artist"
 			action="${pageContext.request.contextPath}/artists/add" method="post">
 
-			<table>
+			<table  border="1">
 				<tr>
 					<td>FirstName:</td>
 					<td><form:input path="firstName" /></td>
