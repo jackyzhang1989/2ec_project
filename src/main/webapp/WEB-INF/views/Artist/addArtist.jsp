@@ -26,8 +26,8 @@
 		</tr>
 		<tr>
 			<td>Date of Birth:</td>
-			<td><form:input path="dob"/> </td>
-			<td><form:errors path = "dob" cssStyle="color:red" /> </td>
+			<td><form:input path="dateOfBirth"/> </td>
+			<td><form:errors path = "dateOfBirth" cssStyle="color:red" /> </td>
 		</tr>
 		<tr>
 			<td>Place of Birth:</td>

@@ -10,39 +10,39 @@ import cs.mum.edu.yongchao.entity.Director;
 import cs.mum.edu.yongchao.service.DirectorService;
 
 @Transactional
-public class DirectorServiceImpl implements DirectorService{
-	private DirectorDao directorDao;
+public class DirectorServiceImpl implements DirectorService {
+  private DirectorDao directorDao;
 
-	@Autowired
-	public void setDirectorDao(DirectorDao repository){
-		this.directorDao = repository;
-	}
-	
-	public List<Director> getAll() {
+  @Autowired
+  public void setDirectorDao(DirectorDao repository) {
+    this.directorDao = repository;
+  }
 
-		return directorDao.findAll();
-	}
+  public List<Director> getAll() {
 
-	public void create(Director director) {
+    return directorDao.findAll();
+  }
 
-		directorDao.save(director);
-	}
+  public void create(Director director) {
 
-	public void update(int id, Director director) {
-		director.setId(id);	
-		directorDao.save(director);
-	}
+    directorDao.save(director);
+  }
 
-	public void delete(int id) {
+  public void update(int id, Director director) {
+    director.setId(id);
+    directorDao.save(director);
+  }
 
-		Director director = directorDao.findOne(id);
-		directorDao.delete(director);
-	}
+  public void delete(int id) {
 
-	public Director get(int id) {
+    Director director = directorDao.findOne(id);
+    directorDao.delete(director);
+  }
 
-		return directorDao.findOne(id);
-	}
+  public Director get(int id) {
+
+    return directorDao.findOne(id);
+  }
 
 }
 

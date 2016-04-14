@@ -15,7 +15,8 @@
 	<br>
 	<div>
 		<a href="artists">Search Artists</a> &nbsp;&nbsp; 
-		<a href="directors">Search Directors</a>
+		<a href="directors">Search Directors</a> &nbsp;&nbsp; 
+		<a href="movies/add"> Add Movie</a>
 	</div>
 	<br>
 	<br>
@@ -72,6 +73,6 @@
 	</table>
 
 	<br>
-	<a href="movies/add"> Add Movie</a>
+
 </body>
 </html>

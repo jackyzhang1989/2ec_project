@@ -23,73 +23,72 @@ import cs.mum.edu.yongchao.service.ArtistService;
 @Controller
 public class ArtistController {
 
-	
-	@InitBinder     
-	public void initBinder(WebDataBinder binder){
-	     binder.registerCustomEditor(Date.class,     
-	                         new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));   
-	}
-	
-	@Autowired
-	private ArtistService artistService;
 
-//	public void setArtistService(ArtistService artistService) {
-//		this.artistService = artistService;
-//	}
+  @InitBinder
+  public void initBinder(WebDataBinder binder) {
+    binder.registerCustomEditor(Date.class,
+        new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
+  }
 
-	@RequestMapping(value = "/artists", method = RequestMethod.GET)
-	public String index(Model model) {
+  @Autowired
+  private ArtistService artistService;
 
-		List<Artist> artistList = artistService.getAll();
-		model.addAttribute("artistList", artistList);
 
-		return "Artist/artistList";
-	}
 
-	@RequestMapping(value = "/artists/add", method = RequestMethod.GET)
-	public String add(Model model) {
-		
-		model.addAttribute("artist", new Artist());
-		return "Artist/addArtist";
-	}
+  @RequestMapping(value = "/artists", method = RequestMethod.GET)
+  public String index(Model model) {
 
-	@RequestMapping(value = "/artists/add", method = RequestMethod.POST)
-	public String add(@Valid Artist artist, BindingResult result) {
+    List<Artist> artistList = artistService.getAll();
+    model.addAttribute("artistList", artistList);
 
-		System.out.println(result.hasErrors());
-		if(result.hasErrors())
-			return "Artist/addArtist";
-		
-		artistService.create(artist);
-		return "redirect:/artists";
-	}
-	
-	@RequestMapping(value = "/artists/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable int id, Model model){
-		
-		Artist artist = artistService.get(id);
-		model.addAttribute("artist", artist);
-		
-		return "Artist/updateArtist";
-	}
-	
-	@RequestMapping(value = "/artists/update/{id}", method = RequestMethod.POST)
-	public String update(@Valid Artist artist,@PathVariable int id, BindingResult result){
-		
-		if(result.hasErrors())
-			return "redirect:/artists/update/" + id;
-		
-		artistService.update(id, artist);
-		
-		return "redirect:/artists";
-	}
-	
-	@RequestMapping(value = "/artists/delete/{id}", method = RequestMethod.POST )
-	public String delete(@PathVariable int id){
-		
-		artistService.delete(id);
-		return "redirect:/artists";
-	}
-	
+    return "Artist/artistList";
+  }
+
+  @RequestMapping(value = "/artists/add", method = RequestMethod.GET)
+  public String add(Model model) {
+
+    model.addAttribute("artist", new Artist());
+    return "Artist/addArtist";
+  }
+
+  @RequestMapping(value = "/artists/add", method = RequestMethod.POST)
+  public String add(@Valid Artist artist, BindingResult result) {
+
+    System.out.println(result.hasErrors());
+    if (result.hasErrors())
+      return "Artist/addArtist";
+
+    artistService.create(artist);
+    return "redirect:/artists";
+  }
+
+  @RequestMapping(value = "/artists/update/{id}", method = RequestMethod.GET)
+  public String update(@PathVariable int id, Model model) {
+
+    Artist artist = artistService.get(id);
+    artist.setDateOfBirth(null);
+    model.addAttribute("artist", artist);
+
+    return "Artist/updateArtist";
+  }
+
+  @RequestMapping(value = "/artists/update/{id}", method = RequestMethod.POST)
+  public String update(@Valid Artist artist, @PathVariable int id, BindingResult result) {
+    System.out.println(result.hasErrors());
+    if (result.hasErrors())
+      return "redirect:/artists/update/" + id;
+
+    artistService.update(id, artist);
+
+    return "redirect:/artists";
+  }
+
+  @RequestMapping(value = "/artists/delete/{id}", method = RequestMethod.POST)
+  public String delete(@PathVariable int id) {
+
+    artistService.delete(id);
+    return "redirect:/artists";
+  }
+
 
 }

@@ -14,61 +14,61 @@ import cs.mum.edu.yongchao.service.MovieService;
 @Transactional
 public class MovieServiceImpl implements MovieService {
 
-	private MovieDao movieDao;
+  private MovieDao movieDao;
 
-	@Autowired
-	public void setMovieDao(MovieDao repository){
-		this.movieDao = repository;
-	}
-	
-	public List<Movie> getAll() {
+  @Autowired
+  public void setMovieDao(MovieDao repository) {
+    this.movieDao = repository;
+  }
 
-		return movieDao.findAll();
-	}
+  public List<Movie> getAll() {
 
-	public void create(Movie movie) {
+    return movieDao.findAll();
+  }
 
-		movieDao.save(movie);
-	}
+  public void create(Movie movie) {
 
-	public void update(int id, Movie movie) {
-		movie.setId(id);	
-		movieDao.save(movie);
-	}
+    movieDao.save(movie);
+  }
 
-	public void delete(int id) {
+  public void update(int id, Movie movie) {
+    movie.setId(id);
+    movieDao.save(movie);
+  }
 
-		Movie movie = movieDao.findOne(id);
-		movieDao.delete(movie);
-	}
+  public void delete(int id) {
 
-	public Movie get(int id) {
+    Movie movie = movieDao.findOne(id);
+    movieDao.delete(movie);
+  }
 
-		return movieDao.findOne(id);
-	}
+  public Movie get(int id) {
 
-	public List<Movie> findByName(String name) {
-		return movieDao.findByName(name);
-	}
+    return movieDao.findOne(id);
+  }
 
-	public List<Movie> findByYear(int year) {
-		return movieDao.findByYear(year);
-	}
+  public List<Movie> findByName(String name) {
+    return movieDao.findByName(name);
+  }
 
-	public List<Movie> findByGenres(String genres) {
-		return movieDao.findByGenres(Genre.valueOf(genres));
-	}
+  public List<Movie> findByYear(int year) {
+    return movieDao.findByYear(year);
+  }
 
-	public List<Movie> findByRating(Rating rating) {
-		return movieDao.findByRating(rating);
-	}
+  public List<Movie> findByGenres(String genres) {
+    return movieDao.findByGenres(Genre.valueOf(genres));
+  }
 
-	public List<Movie> findByArtists(String name) {
-		return movieDao.findByArtists(name);
-	}
+  public List<Movie> findByRating(Rating rating) {
+    return movieDao.findByRating(rating);
+  }
 
-	public List<Movie> findByDirectors(String name) {
-		return movieDao.findByDirectors(name);
-	}
+  public List<Movie> findByArtists(String name) {
+    return movieDao.findByArtists(name);
+  }
+
+  public List<Movie> findByDirectors(String name) {
+    return movieDao.findByDirectors(name);
+  }
 
 }

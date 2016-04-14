@@ -36,161 +36,162 @@ import cs.mum.edu.yongchao.viewmodel.FilterCriteria;
 @Controller
 public class MovieController {
 
-	@Autowired
-	private MovieService movieService;
+  @Autowired
+  private MovieService movieService;
 
-	@Autowired
-	private ArtistService artistService;
+  @Autowired
+  private ArtistService artistService;
 
-	@Autowired
-	private DirectorService directorService;
+  @Autowired
+  private DirectorService directorService;
 
-	public void setMovieService(MovieService movieService) {
-		this.movieService = movieService;
-	}
+  // public void setMovieService(MovieService movieService) {
+  // this.movieService = movieService;
+  // }
 
-//	 @Autowired
-//	 private ConversionService conversionService;
-//	
-//	 @InitBinder
-//	 protected void initBinder(ServletRequestDataBinder binder) {
-//	
-//	 binder.setConversionService(conversionService);
-//	 }
+  // @Autowired
+  // private ConversionService conversionService;
+  //
+  // @InitBinder
+  // protected void initBinder(ServletRequestDataBinder binder) {
+  //
+  // binder.setConversionService(conversionService);
+  // }
 
-	@RequestMapping(value = { "/", "/movie", "/movies" }, method = RequestMethod.GET)
-	public String index(Model model) {
+  @RequestMapping(value = {"/", "/movie", "/movies"}, method = RequestMethod.GET)
+  public String index(Model model) {
 
-		String searchText = (String) model.asMap().get("searchText");
-		String filterCriteria = (String) model.asMap().get("filterCriteria");
+    String searchText = (String) model.asMap().get("searchText");
+    String filterCriteria = (String) model.asMap().get("filterCriteria");
 
-		List<Movie> movieList = new ArrayList<>();
-		if (searchText != null && filterCriteria != null) {
-			System.out.println("Filtering data with: " + searchText + " & " + filterCriteria);
-			movieList = getFilteredMovies(searchText, filterCriteria);
-		} else {
+    List<Movie> movieList = new ArrayList<>();
+    if (searchText != null && filterCriteria != null) {
+      System.out.println("Filtering data with: " + searchText + " & " + filterCriteria);
+      movieList = getFilteredMovies(searchText, filterCriteria);
+    } else {
 
-			movieList = movieService.getAll();
-		}
-		model.addAttribute("movieList", movieList);
-		model.addAttribute("filter", new FilterCriteria());
-		model.addAttribute("filterList", getFilterList());
+      movieList = movieService.getAll();
+    }
+    model.addAttribute("movieList", movieList);
+    model.addAttribute("filter", new FilterCriteria());
+    model.addAttribute("filterList", getFilterList());
 
-		return "Movie/movieList";
-	}
+    return "Movie/movieList";
+  }
 
-	@RequestMapping(value = "/movies/search", method = RequestMethod.POST)
-	public String search(@Valid FilterCriteria filter, BindingResult result, RedirectAttributes redirectAttr) {
+  @RequestMapping(value = "/movies/search", method = RequestMethod.POST)
+  public String search(@Valid FilterCriteria filter, BindingResult result,
+      RedirectAttributes redirectAttr) {
 
-		System.out.println(filter.getId() + " " + filter.getText());
-		redirectAttr.addFlashAttribute("searchText", filter.getText());
-		redirectAttr.addFlashAttribute("filterCriteria", filter.getId());
+    System.out.println(filter.getId() + " " + filter.getText());
+    redirectAttr.addFlashAttribute("searchText", filter.getText());
+    redirectAttr.addFlashAttribute("filterCriteria", filter.getId());
 
-		if (result.hasErrors())
-			System.out.println("Searching for the term" + result.hasErrors());
-		return "redirect:/movie";
-	}
+    if (result.hasErrors())
+      System.out.println("Searching for the term" + result.hasErrors());
+    return "redirect:/movie";
+  }
 
-	@RequestMapping(value = "/movies/add", method = RequestMethod.GET)
-	public String add(Model model) {
+  @RequestMapping(value = "/movies/add", method = RequestMethod.GET)
+  public String add(Model model) {
 
-		Movie movie = new Movie();
-		Genre[] genres = Genre.values();
-		movie.setGenres(Arrays.asList(genres));
+    Movie movie = new Movie();
+    Genre[] genres = Genre.values();
+    movie.setGenres(Arrays.asList(genres));
 
-		Rating[] ratings = Rating.values();
+    Rating[] ratings = Rating.values();
 
-		List<Artist> artists = artistService.getAll();
-		movie.setArtists(artists);
+    List<Artist> artists = artistService.getAll();
+    movie.setArtists(artists);
 
-		List<Director> directors = directorService.getAll();
-		movie.setDirectors(directors);
+    List<Director> directors = directorService.getAll();
+    movie.setDirectors(directors);
 
-		model.addAttribute("movie", movie);
-		model.addAttribute("ratings", Arrays.asList(ratings));
-		return "Movie/addMovie";
-	}
+    model.addAttribute("movie", movie);
+    model.addAttribute("ratings", Arrays.asList(ratings));
+    return "Movie/addMovie";
+  }
 
-	@RequestMapping(value = "/movies/add", method = RequestMethod.POST)
-	public String add(@Valid Movie movie, BindingResult result) {
+  @RequestMapping(value = "/movies/add", method = RequestMethod.POST)
+  public String add(@Valid Movie movie, BindingResult result) {
 
-		System.out.println(result.hasErrors());
-		if (result.hasErrors())
-			return "Movie/addMovie";
+    System.out.println(result.hasErrors());
+    if (result.hasErrors())
+      return "Movie/addMovie";
 
-		movieService.create(movie);
-		return "redirect:/movies";
-	}
+    movieService.create(movie);
+    return "redirect:/movies";
+  }
 
-	@RequestMapping(value = "/movies/update/{id}", method = RequestMethod.GET)
-	public String update(@PathVariable int id, Model model) {
+  @RequestMapping(value = "/movies/update/{id}", method = RequestMethod.GET)
+  public String update(@PathVariable int id, Model model) {
 
-		Movie movie = movieService.get(id);
-		model.addAttribute("movie", movie);
+    Movie movie = movieService.get(id);
+    model.addAttribute("movie", movie);
 
-		Rating[] ratings = Rating.values();
-		model.addAttribute("ratings", Arrays.asList(ratings));
+    Rating[] ratings = Rating.values();
+    model.addAttribute("ratings", Arrays.asList(ratings));
 
-		Genre[] genres = Genre.values();
-		model.addAttribute("genres", Arrays.asList(genres));
+    Genre[] genres = Genre.values();
+    model.addAttribute("genres", Arrays.asList(genres));
 
-		model.addAttribute("artists", artistService.getAll());
-		model.addAttribute("directors", directorService.getAll());
+    model.addAttribute("artists", artistService.getAll());
+    model.addAttribute("directors", directorService.getAll());
 
-		return "Movie/updateMovie";
-	}
+    return "Movie/updateMovie";
+  }
 
-	@RequestMapping(value = "/movies/update/{id}", method = RequestMethod.POST)
-	public String update(@Valid Movie movie, @PathVariable int id, BindingResult result) {
+  @RequestMapping(value = "/movies/update/{id}", method = RequestMethod.POST)
+  public String update(@Valid Movie movie, @PathVariable int id, BindingResult result) {
 
-		if (result.hasErrors())
-			return "redirect:/movies/update/" + id;
+    if (result.hasErrors())
+      return "redirect:/movies/update/" + id;
 
-		movieService.update(id, movie);
+    movieService.update(id, movie);
 
-		return "redirect:/movies";
-	}
+    return "redirect:/movies";
+  }
 
-	@RequestMapping(value = "/movies/delete/{id}", method = RequestMethod.POST)
-	public String delete(@PathVariable int id) {
+  @RequestMapping(value = "/movies/delete/{id}", method = RequestMethod.POST)
+  public String delete(@PathVariable int id) {
 
-		movieService.delete(id);
-		return "redirect:/movies";
-	}
+    movieService.delete(id);
+    return "redirect:/movies";
+  }
 
-	private List<FilterCriteria> getFilterList() {
+  private List<FilterCriteria> getFilterList() {
 
-		List<FilterCriteria> list = new ArrayList<>();
-		list.add(new FilterCriteria("1", "Name of Movie", ""));
-		list.add(new FilterCriteria("2", "Genre of Movie", ""));
-		list.add(new FilterCriteria("3", "Rating of Movie", ""));
-		list.add(new FilterCriteria("4", "Year of Movie", ""));
-		list.add(new FilterCriteria("5", "Name of Artist", ""));
-		list.add(new FilterCriteria("6", "Director of Movie", ""));
+    List<FilterCriteria> list = new ArrayList<>();
+    list.add(new FilterCriteria("1", "Name of Movie", ""));
+    list.add(new FilterCriteria("2", "Genre of Movie", ""));
+    list.add(new FilterCriteria("3", "Rating of Movie", ""));
+    list.add(new FilterCriteria("4", "Year of Movie", ""));
+    list.add(new FilterCriteria("5", "Name of Artist", ""));
+    list.add(new FilterCriteria("6", "Director of Movie", ""));
 
-		return list;
+    return list;
 
-	}
+  }
 
-	private List<Movie> getFilteredMovies(String text, String idVal) {
+  private List<Movie> getFilteredMovies(String text, String idVal) {
 
-		switch (idVal) {
-		case "2":
-			return movieService.findByGenres(text);
-		case "3":
-			return movieService.findByRating(Rating.valueOf(text));
+    switch (idVal) {
+      case "2":
+        return movieService.findByGenres(text);
+      case "3":
+        return movieService.findByRating(Rating.valueOf(text));
 
-		case "4":
-			return movieService.findByYear(Integer.parseInt(text));
-		case "5":
-			return movieService.findByArtists(text);
-		case "6":
-			return movieService.findByDirectors(text);
+      case "4":
+        return movieService.findByYear(Integer.parseInt(text));
+      case "5":
+        return movieService.findByArtists(text);
+      case "6":
+        return movieService.findByDirectors(text);
 
-		default:
-			return movieService.findByName(text);
-		}
+      default:
+        return movieService.findByName(text);
+    }
 
-	}
+  }
 
 }

@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import cs.mum.edu.yongchao.entity.Artist;
 
-public interface ArtistDao extends JpaRepository<Artist, Integer>{
+public interface ArtistDao extends JpaRepository<Artist, Integer> {
 
-	List<Artist> findByFirstName(String firstName);
-	List<Artist> findByLastName(String lastName);
-	
-	
-	
+  List<Artist> findByFirstName(String firstName);
+
+  List<Artist> findByLastName(String lastName);
+
+
+
 }

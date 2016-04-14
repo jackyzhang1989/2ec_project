@@ -12,38 +12,38 @@ import cs.mum.edu.yongchao.service.ArtistService;
 @Transactional
 public class ArtistServiceImpl implements ArtistService {
 
-	private ArtistDao artistDao;
+  private ArtistDao artistDao;
 
-	@Autowired
-	public void setArtistDao(ArtistDao repository){
-		this.artistDao = repository;
-	}
+  @Autowired
+  public void setArtistDao(ArtistDao repository) {
+    this.artistDao = repository;
+  }
 
-	
-	public List<Artist> getAll() {
 
-		return artistDao.findAll();
-	}
+  public List<Artist> getAll() {
 
-	public void create(Artist artist) {
+    return artistDao.findAll();
+  }
 
-		artistDao.save(artist);
-	}
+  public void create(Artist artist) {
 
-	public void update(int id, Artist artist) {
-		artist.setId(id);	
-		artistDao.save(artist);
-	}
+    artistDao.save(artist);
+  }
 
-	public void delete(int id) {
+  public void update(int id, Artist artist) {
+    artist.setId(id);
+    artistDao.save(artist);
+  }
 
-		Artist artist = artistDao.findOne(id);
-		artistDao.delete(artist);
-	}
+  public void delete(int id) {
 
-	public Artist get(int id) {
+    Artist artist = artistDao.findOne(id);
+    artistDao.delete(artist);
+  }
 
-		return artistDao.findOne(id);
-	}
+  public Artist get(int id) {
+
+    return artistDao.findOne(id);
+  }
 
 }

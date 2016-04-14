@@ -11,28 +11,28 @@ import cs.mum.edu.yongchao.dao.ArtistDao;
 import cs.mum.edu.yongchao.entity.Artist;
 
 
-public final class ArtistFormatter implements Converter<String[], List<Artist>>{
+public final class ArtistFormatter implements Converter<String[], List<Artist>> {
 
-	
-	private ArtistDao artistDao;
-	
-	@Autowired
-	public void setArtistDao(ArtistDao repository){
-		this.artistDao = repository;
-	}
-	
-	@Override
-	public List<Artist> convert(String[] source) {
-		
-		List<Artist> artists = new ArrayList<>();
-		
-		for(String idVal: source){
-			int id = Integer.parseInt(idVal);
-			
-			artists.add(artistDao.getOne(id));
-		}
-		
-		return artists;
-	}
+
+  private ArtistDao artistDao;
+
+  @Autowired
+  public void setArtistDao(ArtistDao repository) {
+    this.artistDao = repository;
+  }
+
+  @Override
+  public List<Artist> convert(String[] source) {
+
+    List<Artist> artists = new ArrayList<>();
+
+    for (String idVal : source) {
+      int id = Integer.parseInt(idVal);
+
+      artists.add(artistDao.getOne(id));
+    }
+
+    return artists;
+  }
 
 }

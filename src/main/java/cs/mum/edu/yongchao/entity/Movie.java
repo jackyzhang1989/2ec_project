@@ -1,4 +1,5 @@
 package cs.mum.edu.yongchao.entity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -11,123 +12,124 @@ import java.util.*;
 @SecondaryTable(name = "MoviePoster")
 public class Movie {
 
-	@Id @GeneratedValue
-	private int id;
-	
-	@NotNull(message = "Movie release year cannot be blank")
-	private int year;
-	
-	@NotBlank(message = "Movie name cannot be blank")
-	private String name;
-	
-	@Lob
-	@Column(table = "MoviePoster")
-	private byte[] poster;
-	
-	@NotBlank(message = "Movie summary cannot be blank")
-	private String summary;
-	
-	@Enumerated(EnumType.STRING)
-	private Rating rating;
-	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@OrderColumn(name = "position")
-	@Enumerated(EnumType.STRING)
-	private List<Genre> genres = new ArrayList<>();
-	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@OrderColumn(name = "position")
-	private List<String> comments = new ArrayList<>();
-	
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@Cascade(value = {org.hibernate.annotations.CascadeType.DELETE })
-	@JoinTable(name = "MovieDirector")
-	private List<Director> directors = new ArrayList<>();
-	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@Cascade(value = {org.hibernate.annotations.CascadeType.ALL })
-	@JoinTable(name = "MovieArtist")
-	private List<Artist> artists = new ArrayList<>();
+  @Id
+  @GeneratedValue
+  private int id;
 
-	public int getYear() {
-		return year;
-	}
+  @NotNull(message = "Movie release year cannot be blank")
+  private int year;
 
-	public void setYear(int year) {
-		this.year = year;
-	}
+  @NotBlank(message = "Movie name cannot be blank")
+  private String name;
 
-	public String getName() {
-		return name;
-	}
+  @Lob
+  @Column(table = "MoviePoster")
+  private byte[] poster;
 
-	public void setName(String title) {
-		this.name = title;
-	}
+  @NotBlank(message = "Movie summary cannot be blank")
+  private String summary;
 
-	public byte[] getPoster() {
-		return poster;
-	}
+  @Enumerated(EnumType.STRING)
+  private Rating rating;
 
-	public void setPoster(byte[] poster) {
-		this.poster = poster;
-	}
+  @ElementCollection(fetch = FetchType.EAGER)
+  @OrderColumn(name = "position")
+  @Enumerated(EnumType.STRING)
+  private List<Genre> genres = new ArrayList<>();
 
-	public String getSummary() {
-		return summary;
-	}
+  @ElementCollection(fetch = FetchType.EAGER)
+  @OrderColumn(name = "position")
+  private List<String> comments = new ArrayList<>();
 
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
 
-	public Rating getRating() {
-		return rating;
-	}
+  @ManyToMany(fetch = FetchType.EAGER)
+  @Cascade(value = {org.hibernate.annotations.CascadeType.DELETE})
+  @JoinTable(name = "MovieDirector")
+  private List<Director> directors = new ArrayList<>();
 
-	public void setRating(Rating rating) {
-		this.rating = rating;
-	}
+  @ManyToMany(fetch = FetchType.EAGER)
+  @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
+  @JoinTable(name = "MovieArtist")
+  private List<Artist> artists = new ArrayList<>();
 
-	public List<Genre> getGenres() {
-		return genres;
-	}
+  public int getYear() {
+    return year;
+  }
 
-	public void setGenres(List<Genre> genres) {
-		this.genres = genres;
-	}
+  public void setYear(int year) {
+    this.year = year;
+  }
 
-	public List<String> getComments() {
-		return comments;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setComments(List<String> comments) {
-		this.comments = comments;
-	}
+  public void setName(String title) {
+    this.name = title;
+  }
 
-	public List<Director> getDirectors() {
-		return directors;
-	}
+  public byte[] getPoster() {
+    return poster;
+  }
 
-	public void setDirectors(List<Director> directors) {
-		this.directors = directors;
-	}
+  public void setPoster(byte[] poster) {
+    this.poster = poster;
+  }
 
-	public List<Artist> getArtists() {
-		return artists;
-	}
+  public String getSummary() {
+    return summary;
+  }
 
-	public void setArtists(List<Artist> artists) {
-		this.artists = artists;
-	}
-	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id){
-		this.id = id;
-	}
-	
+  public void setSummary(String summary) {
+    this.summary = summary;
+  }
+
+  public Rating getRating() {
+    return rating;
+  }
+
+  public void setRating(Rating rating) {
+    this.rating = rating;
+  }
+
+  public List<Genre> getGenres() {
+    return genres;
+  }
+
+  public void setGenres(List<Genre> genres) {
+    this.genres = genres;
+  }
+
+  public List<String> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<String> comments) {
+    this.comments = comments;
+  }
+
+  public List<Director> getDirectors() {
+    return directors;
+  }
+
+  public void setDirectors(List<Director> directors) {
+    this.directors = directors;
+  }
+
+  public List<Artist> getArtists() {
+    return artists;
+  }
+
+  public void setArtists(List<Artist> artists) {
+    this.artists = artists;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
 }

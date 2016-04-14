@@ -8,16 +8,25 @@ import cs.mum.edu.yongchao.entity.Rating;
 
 public interface MovieService {
 
-	List<Movie> getAll();
-	void create(Movie movie);
-	void update(int id, Movie movie);
-	void delete(int id);
-	Movie get(int id);
-	
-	List<Movie> findByName(String name);
-	List<Movie> findByYear(int year);
-	List<Movie> findByGenres(String genres);
-	List<Movie> findByRating(Rating rating)	;
-	List<Movie> findByArtists(String name);	
-	List<Movie> findByDirectors(String name);
+  List<Movie> getAll();
+
+  void create(Movie movie);
+
+  void update(int id, Movie movie);
+
+  void delete(int id);
+
+  Movie get(int id);
+
+  List<Movie> findByName(String name);
+
+  List<Movie> findByYear(int year);
+
+  List<Movie> findByGenres(String genres);
+
+  List<Movie> findByRating(Rating rating);
+
+  List<Movie> findByArtists(String name);
+
+  List<Movie> findByDirectors(String name);
 }

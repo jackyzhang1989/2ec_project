@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/tx
@@ -19,18 +17,18 @@
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<context:property-placeholder location="classpath:application.properties" />
-	
-	<context:annotation-config/>
-	
+
+	<context:annotation-config />
+
 	<context:component-scan base-package="cs.mum.edu.yongchao"></context:component-scan>
-	
-	
+
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
+
 	<jpa:repositories base-package="cs.mum.edu.yongchao.dao"></jpa:repositories>
-	
-	
-	
+
+
+
 	<bean id="propertyPlaceHolderConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"></bean>
 	<bean id="entityManagerFactory"
@@ -40,7 +38,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				
+
 				<prop key="use_sql_comments">${use_sql_comments}</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="connection.pool.size">${connection.pool.size}</prop>
@@ -72,21 +70,21 @@
 
 	<bean id="movieService" class="cs.mum.edu.yongchao.service.impl.MovieServiceImpl"></bean>
 	<bean id="artistService" class="cs.mum.edu.yongchao.service.impl.ArtistServiceImpl"></bean>
-	<bean id = "directorService" class = "cs.mum.edu.yongchao.service.impl.DirectorServiceImpl"></bean>
-	
-	<mvc:annotation-driven conversion-service="conversionService"/>
-	
-	<bean id = "filter" class = "cs.mum.edu.yongchao.viewmodel.FilterCriteria"/>
-	
+	<bean id="directorService" class="cs.mum.edu.yongchao.service.impl.DirectorServiceImpl"></bean>
+
+	<mvc:annotation-driven conversion-service="conversionService" />
+
+	<bean id="filter" class="cs.mum.edu.yongchao.viewmodel.FilterCriteria" />
+
 	<bean id="conversionService"
-      class="org.springframework.context.support.ConversionServiceFactoryBean">
-	    <property name="converters">
-	        <set>
-	            <bean class="cs.mum.edu.yongchao.service.util.ArtistFormatter"/>
-	            <bean class="cs.mum.edu.yongchao.service.util.StringIdToArtistConvertor"/>
-	            
-	        </set>
-	    </property>
+		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="cs.mum.edu.yongchao.service.util.ArtistFormatter" />
+				<bean class="cs.mum.edu.yongchao.service.util.StringIdToArtistConvertor" />
+
+			</set>
+		</property>
 	</bean>
-	
+
 </beans>
