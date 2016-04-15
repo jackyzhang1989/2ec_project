@@ -33,7 +33,7 @@
 				<prop key="use_sql_comments">${use_sql_comments}</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="cs.mum.edu.extraCredit.model" />
+		<property name="packagesToScan" value="cs.mum.edu.yongchao.model" />
 	</bean>
 	    
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -43,12 +43,12 @@
 	
 
 	
-	<jpa:repositories base-package="cs.mum.edu.extraCredit.dao"></jpa:repositories>
+	<jpa:repositories base-package="cs.mum.edu.yongchao.dao"></jpa:repositories>
 	<mvc:annotation-driven />
 	<context:property-placeholder location="classpath:application.properties" />
 	<context:annotation-config/>
-	<context:component-scan base-package="cs.mum.edu.extraCredit.service"></context:component-scan>
-	<context:component-scan base-package="cs.mum.edu.extraCredit.service.helper"></context:component-scan>
+	<context:component-scan base-package="cs.mum.edu.yongchao.service"></context:component-scan>
+	<context:component-scan base-package="cs.mum.edu.yongchao.service.helper"></context:component-scan>
 	
 	<bean id="propertyPlaceHolderConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"></bean>
@@ -70,9 +70,9 @@
 		<property name="password" value="${db.password}"></property>
 	</bean>
 
-	<bean id="movieService" class="cs.mum.edu.extraCredit.service.MovieServiceImpl"></bean>
-	<bean id="artistService" class="cs.mum.edu.extraCredit.service.ArtistServiceImpl"></bean>
-	<bean id = "directorService" class = "cs.mum.edu.extraCredit.service.DirectorServiceImpl"></bean>
+	<bean id="movieService" class="cs.mum.edu.yongchao.service.impl.MovieServiceImpl"></bean>
+	<bean id="artistService" class="cs.mum.edu.yongchao.service.impl.ArtistServiceImpl"></bean>
+	<bean id = "directorService" class = "cs.mum.edu.yongchao.service.impl.DirectorServiceImpl"></bean>
 	
 	<mvc:annotation-driven conversion-service="conversionService"/>
 	
@@ -80,14 +80,14 @@
       class="org.springframework.context.support.ConversionServiceFactoryBean">
 	    <property name="converters">
 	        <set>
-	            <bean class="cs.mum.edu.extraCredit.service.helper.ArtistFormatter"/>
-	            <bean class="cs.mum.edu.extraCredit.service.helper.StringIdToArtistConvertor"/>
+	            <bean class="cs.mum.edu.yongchao.service.util.ArtistFormatter"/>
+	            <bean class="cs.mum.edu.yongchao.service.util.StringIdToArtistConvertor"/>
 	            
 	        </set>
 	    </property>
 	</bean>
 	
-	<bean id = "filter" class = "cs.mum.edu.extraCredit.viewmodel.FilterCriteria"/>
+	<bean id = "filter" class = "cs.mum.edu.yongchao.viewmodel.FilterCriteria"/>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
 	

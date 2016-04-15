@@ -1,20 +1,17 @@
-package cs.mum.edu.extraCredit.service.helper;
+package cs.mum.edu.yongchao.service.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 
-import cs.mum.edu.extraCredit.dao.ArtistDao;
-import cs.mum.edu.extraCredit.model.Artist;
+import cs.mum.edu.yongchao.dao.ArtistDao;
+import cs.mum.edu.yongchao.entity.Artist;
 
+public class StringIdToArtistConvertor implements Converter<String[], List<Artist>> {
 
-public final class ArtistFormatter implements Converter<String[], List<Artist>>{
-
-	
-	private ArtistDao artistDao;
+private ArtistDao artistDao;
 	
 	@Autowired
 	public void setArtistDao(ArtistDao repository){
@@ -34,5 +31,4 @@ public final class ArtistFormatter implements Converter<String[], List<Artist>>{
 		
 		return artists;
 	}
-
 }

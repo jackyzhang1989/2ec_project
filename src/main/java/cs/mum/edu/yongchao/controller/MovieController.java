@@ -1,4 +1,4 @@
-package cs.mum.edu.extraCredit.controller;
+package cs.mum.edu.yongchao.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import cs.mum.edu.extraCredit.model.Artist;
-import cs.mum.edu.extraCredit.model.Director;
-import cs.mum.edu.extraCredit.model.Genre;
-import cs.mum.edu.extraCredit.model.Movie;
-import cs.mum.edu.extraCredit.model.Rating;
-import cs.mum.edu.extraCredit.service.ArtistService;
-import cs.mum.edu.extraCredit.service.DirectorService;
-import cs.mum.edu.extraCredit.service.MovieService;
-import cs.mum.edu.extraCredit.viewmodel.FilterCriteria;
+import cs.mum.edu.yongchao.entity.Artist;
+import cs.mum.edu.yongchao.entity.Director;
+import cs.mum.edu.yongchao.entity.Genre;
+import cs.mum.edu.yongchao.entity.Movie;
+import cs.mum.edu.yongchao.entity.Rating;
+import cs.mum.edu.yongchao.service.ArtistService;
+import cs.mum.edu.yongchao.service.DirectorService;
+import cs.mum.edu.yongchao.service.MovieService;
+import cs.mum.edu.yongchao.viewmodel.FilterCriteria;
 
 @Controller
 public class MovieController {
@@ -68,7 +68,7 @@ public class MovieController {
 		model.addAttribute("filter", new FilterCriteria());
 		model.addAttribute("filterList", getFilterList());
 
-		return "Movie/movieList";
+		return "Movie/listAllMovie";
 	}
 
 	@RequestMapping(value = "/movies/search", method = RequestMethod.POST)

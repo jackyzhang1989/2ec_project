@@ -1,12 +1,13 @@
-package cs.mum.edu.extraCredit.service;
+package cs.mum.edu.yongchao.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.edu.extraCredit.dao.DirectorDao;
-import cs.mum.edu.extraCredit.model.Director;
+import cs.mum.edu.yongchao.dao.DirectorDao;
+import cs.mum.edu.yongchao.entity.Director;
+import cs.mum.edu.yongchao.service.DirectorService;
 
 @Transactional
 public class DirectorServiceImpl implements DirectorService{

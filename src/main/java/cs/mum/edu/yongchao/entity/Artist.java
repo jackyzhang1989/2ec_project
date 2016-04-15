@@ -1,4 +1,4 @@
-package cs.mum.edu.extraCredit.model;
+package cs.mum.edu.yongchao.entity;
 
 import java.util.*;
 

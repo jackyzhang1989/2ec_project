@@ -1,12 +1,13 @@
-package cs.mum.edu.extraCredit.service;
+package cs.mum.edu.yongchao.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.edu.extraCredit.dao.ArtistDao;
-import cs.mum.edu.extraCredit.model.Artist;
+import cs.mum.edu.yongchao.dao.ArtistDao;
+import cs.mum.edu.yongchao.entity.Artist;
+import cs.mum.edu.yongchao.service.ArtistService;
 
 @Transactional
 public class ArtistServiceImpl implements ArtistService {

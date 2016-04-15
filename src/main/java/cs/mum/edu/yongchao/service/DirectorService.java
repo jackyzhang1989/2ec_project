@@ -1,8 +1,8 @@
-package cs.mum.edu.extraCredit.service;
+package cs.mum.edu.yongchao.service;
 
 import java.util.List;
 
-import cs.mum.edu.extraCredit.model.Director;
+import cs.mum.edu.yongchao.entity.Director;
 
 public interface DirectorService {
 

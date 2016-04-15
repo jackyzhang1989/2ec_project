@@ -1,14 +1,15 @@
-package cs.mum.edu.extraCredit.service;
+package cs.mum.edu.yongchao.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import cs.mum.edu.extraCredit.dao.MovieDao;
-import cs.mum.edu.extraCredit.model.Genre;
-import cs.mum.edu.extraCredit.model.Movie;
-import cs.mum.edu.extraCredit.model.Rating;
+import cs.mum.edu.yongchao.dao.MovieDao;
+import cs.mum.edu.yongchao.entity.Genre;
+import cs.mum.edu.yongchao.entity.Movie;
+import cs.mum.edu.yongchao.entity.Rating;
+import cs.mum.edu.yongchao.service.MovieService;
 
 @Transactional
 public class MovieServiceImpl implements MovieService {

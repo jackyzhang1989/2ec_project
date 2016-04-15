@@ -1,4 +1,4 @@
-package cs.mum.edu.extraCredit.controller;
+package cs.mum.edu.yongchao.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cs.mum.edu.extraCredit.model.Director;
-import cs.mum.edu.extraCredit.service.DirectorService;
+import cs.mum.edu.yongchao.entity.Director;
+import cs.mum.edu.yongchao.service.DirectorService;
 
 @Controller
 public class DirectorController {
@@ -32,7 +32,7 @@ public class DirectorController {
 		List<Director> directorList = directorService.getAll();
 		model.addAttribute("directorList", directorList);
 
-		return "Director/directorList";
+		return "Director/listAllDirector";
 	}
 
 	@RequestMapping(value = "/directors/add", method = RequestMethod.GET)

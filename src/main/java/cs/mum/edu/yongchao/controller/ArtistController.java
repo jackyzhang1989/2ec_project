@@ -1,4 +1,4 @@
-package cs.mum.edu.extraCredit.controller;
+package cs.mum.edu.yongchao.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cs.mum.edu.extraCredit.model.Artist;
-import cs.mum.edu.extraCredit.service.ArtistService;
+import cs.mum.edu.yongchao.entity.Artist;
+import cs.mum.edu.yongchao.service.ArtistService;
 
 @Controller
 public class ArtistController {
@@ -43,7 +43,7 @@ public class ArtistController {
 		List<Artist> artistList = artistService.getAll();
 		model.addAttribute("artistList", artistList);
 
-		return "Artist/artistList";
+		return "Artist/listAllArtist";
 	}
 
 	@RequestMapping(value = "/artists/add", method = RequestMethod.GET)

@@ -1,4 +1,4 @@
-package cs.mum.edu.extraCredit.viewmodel;
+package cs.mum.edu.yongchao.viewmodel;
 
 import javax.validation.constraints.NotNull;
 
